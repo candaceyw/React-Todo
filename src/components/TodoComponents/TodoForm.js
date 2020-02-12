@@ -32,11 +32,11 @@ class TodoForm extends Component {
     return (
         <div>
            <form onSubmit={this.submitItem}>
-                <label htmlFor="item">New Todo: </label>
+                <label htmlFor="item">New To Do: </label>
                 <input 
                 type="text" 
                 name="item" 
-                placeholder="Enter your Todo" 
+               
                 value={this.state.item}
                 onChange={this.handleChanges}/>
                 <button> add </button>
