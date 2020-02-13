@@ -127,3 +127,15 @@ button {
     margin-top: 16px;
   }
   
+
+  $layout-breakpoint-small: 500px;
+
+@media (min-width: $layout-breakpoint-small) {
+  label {
+    font-size: 1rem;
+    width: 25%;
+  }
+  form > input{
+    width: 200px;
+  }
+}
