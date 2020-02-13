@@ -12,6 +12,20 @@ class App extends React.Component {
     }
   }
 
+  componentDidMount(){
+    console.log('mounted')
+    const localStorageList = localStorage.getItem('todoList');
+    const list = localStorageList ? JSON.parse(localStorageList):[]
+    this.setState({todo: list})
+  }
+
+  componentDidUpdate(){
+    console.log('updated')
+    const stringified = JSON.stringify(this.state.todo)
+    console.log(stringified)
+    localStorage.setItem('todoList', stringified)
+  }
+
   //Class methods to update State
   addTodo = (e, item )=> {
     e.preventDefault();
@@ -22,9 +36,10 @@ class App extends React.Component {
       completed: false,
       show: true
     }
-    this.setState({ 
-      todo: [...this.state.todo, newItem ]
-    })
+    this.setState((prevState) => { 
+      return {todo: [ ...prevState.todo, newItem ]}
+    });
+    
   }
 
 
@@ -58,15 +73,10 @@ class App extends React.Component {
   };
 
 
-  // filterCompleted = () => {
-  //   this.setState({
-  //     todo: this.state.todo.filter(item =>  !item.completed)
-  //   })
-  // }
-
   render() {
     return (
       <div className="App">
+        {console.log(localStorage)}
       <div className="header">
         <h1>TO DO LIST</h1>
         <TodoForm  addTodo={this.addTodo}/>
